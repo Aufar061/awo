@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tebak isi</title>
 
+  <!-- CSS eksternal -->
+  <link rel="stylesheet" href="./Valentine Confession_files/valentine-confession.css" />
+
   <style>
     body {
       margin: 0;
       padding: 0;
       background-color: white;
       transition: background-color 1.5s ease;
-      font-family: Arial, sans-serif;
     }
 
     .instruction {
@@ -26,36 +28,17 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      position: relative;
     }
 
-    /* hati */
-    #heart-btn {
-      width: 100px;
-      height: 100px;
-      cursor: pointer;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease;
-    }
-
-    #heart-btn:hover {
-      transform: scale(1.1);
-    }
-
-    /* pesan */
+    /* Surat disembunyikan dulu */
     .message {
       opacity: 0;
-      transform: translateY(-60px);
-      transition: opacity 1.2s ease, transform 1.2s ease;
+      transform: translateY(-50px);
+      transition: all 1.2s ease;
       pointer-events: none;
-      text-align: center;
-      padding: 20px;
-      max-width: 600px;
     }
 
+    /* Surat saat dibuka */
     .message.show {
       opacity: 1;
       transform: translateY(0);
@@ -67,17 +50,30 @@
   <p class="instruction">Click the heart!</p>
 
   <div class="container">
-    <div id="heart-btn">
-      ❤️
-    </div>
+    <label>
+      <div class="heart beating">
+        <img src="./Valentine Confession_files/Love_Heart_SVG.svg" />
+      </div>
+      <input id="messageState" type="checkbox" style="display: none" />
+    </label>
 
-    <div class="message" id="letter">
-      <h1>Dear AwO❤,</h1>
+    <div class="message no-anim" id="letter">
+      <h1 style="font-family: Cinzel, serif; font-size: 40px; letter-spacing: 1.2px;">
+        Dear AwO❤,
+      </h1>
       <p>
-        AWOOOO SAYANGGGGG❤❤❤ ...
+        <span>
+            AWOOOO SAYANGGGGG❤❤❤, akuuu disiniii mau ngucapin trimakasiiii
+          banyakkk yyaaaaaa, kamuuu bener bener berarti bangettt buat akuu...
+        </span>
+        <br /><br />
+        <span>
+          Sayangggg aku minta maafff yaaaa, akuuu masii banyak kurangnyaaa...
+        </span>
       </p>
-      <div>
-        <p><b>Sincerely</b></p>
+      <br />
+      <div class="sincere">
+        <p style="font-weight: bold">Sincerely</p>
         <p>Aufar</p>
       </div>
     </div>
@@ -86,7 +82,7 @@
   <audio id="bgm" src="Karolina.mp3" loop hidden></audio>
 
   <script>
-    const heart = document.getElementById('heart-btn');
+    const heart = document.querySelector('.heart');
     const letter = document.getElementById('letter');
     const audio = document.getElementById('bgm');
     const instruction = document.querySelector('.instruction');
@@ -95,19 +91,19 @@
 
     heart.addEventListener('click', function () {
       if (!isOpen) {
-        // buka
+        // BUKA
         letter.classList.add('show');
         document.body.style.backgroundColor = 'rgb(244, 143, 177)';
         instruction.style.display = 'none';
         audio.currentTime = 0;
         audio.play();
       } else {
-        // tutup
+        // TUTUP
         letter.classList.remove('show');
         document.body.style.backgroundColor = 'white';
-        instruction.style.display = 'block';
         audio.pause();
         audio.currentTime = 0;
+        instruction.style.display = 'block';
       }
       isOpen = !isOpen;
     });
