@@ -1,112 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>tebak isi</title>
-
-  <!-- CSS eksternal -->
-  <link rel="stylesheet" href="./Valentine Confession_files/valentine-confession.css" />
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: white;
-      transition: background-color 1.5s ease;
-    }
-
-    .instruction {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 18px;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    /* Surat disembunyikan dulu */
-    .message {
-      opacity: 0;
-      transform: translateY(-50px);
-      transition: all 1.2s ease;
-      pointer-events: none;
-    }
-
-    /* Surat saat dibuka */
-    .message.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="./Valentine Confession_files/css2" rel="stylesheet">
+    <link rel="stylesheet" href="./Valentine Confession_files/valentine-confession.css">
+    <title>tebak isi</title>
+    <style>
+        .message {
+            display: none; /* awalnya sembunyi */
+        }
+    </style>
 </head>
 <body>
-  <p class="instruction">Click the heart!</p>
-
-  <div class="container">
-    <label>
-      <div class="heart beating">
-        <img src="./Valentine Confession_files/Love_Heart_SVG.svg" />
-      </div>
-      <input id="messageState" type="checkbox" style="display: none" />
-    </label>
-
-    <div class="message no-anim" id="letter">
-      <h1 style="font-family: Cinzel, serif; font-size: 40px; letter-spacing: 1.2px;">
-        Dear AwO❤,
-      </h1>
-      <p>
-        <span>
-            AWOOOO SAYANGGGGG❤❤❤, akuuu disiniii mau ngucapin trimakasiiii
-          banyakkk yyaaaaaa, kamuuu bener bener berarti bangettt buat akuu...
-        </span>
-        <br /><br />
-        <span>
-          Sayangggg aku minta maafff yaaaa, akuuu masii banyak kurangnyaaa...
-        </span>
-      </p>
-      <br />
-      <div class="sincere">
-        <p style="font-weight: bold">Sincerely</p>
-        <p>Aufar</p>
-      </div>
+    <p class="instruction">Click the heart!</p>
+    <div class="container" style="background-color: rgb(244, 143, 177);">
+        <label>
+            <div class="heart beating">
+                <img src="./Valentine Confession_files/Love_Heart_SVG.svg">
+            </div>
+            <input id="messageState" type="checkbox" style="display:none">
+        </label>
+        <div class="message no-anim" id="letter">
+            <h1 style="font-family: Cinzel, serif; font-size: 40px; letter-spacing: 1.2px;">Dear AwO❤,</h1>
+            <p> 
+                <span>
+                      AWOOOO SAYANGGGGG❤❤❤, akuuu disiniii mau ngucapin trimakasiiii banyakkk yyaaaaaa, kamuuu bener bener berarti bangettt buat akuu...
+                </span>
+                <br><br>
+                <span>
+                    Sayangggg aku minta maafff yaaaa, akuuu masii banyak kurangnyaaa...
+                </span>
+            </p>
+            <br>
+            <div class="sincere">
+                <p style="font-weight: bold;"> Sincerely</p>
+                <p>Aufar</p>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <audio id="bgm" src="Karolina.mp3" loop hidden></audio>
+    <!-- Lagu tanpa autoplay -->
+    <audio id="bgm" src="Karolina.mp3" loop hidden></audio>
 
-  <script>
-    const heart = document.querySelector('.heart');
-    const letter = document.getElementById('letter');
-    const audio = document.getElementById('bgm');
-    const instruction = document.querySelector('.instruction');
-
-    let isOpen = false;
-
-    heart.addEventListener('click', function () {
-      if (!isOpen) {
-        // BUKA
-        letter.classList.add('show');
-        document.body.style.backgroundColor = 'rgb(244, 143, 177)';
-        instruction.style.display = 'none';
-        audio.currentTime = 0;
-        audio.play();
-      } else {
-        // TUTUP
-        letter.classList.remove('show');
-        document.body.style.backgroundColor = 'white';
-        audio.pause();
-        audio.currentTime = 0;
-        instruction.style.display = 'block';
-      }
-      isOpen = !isOpen;
-    });
-  </script>
+    <script src="./Valentine Confession_files/jquery.js.download"></script>
+    <script src="./Valentine Confession_files/jquery2.1.js.download"></script>
+    <script defer src="./Valentine Confession_files/valentine-confession.js.download"></script>
+    <script>
+        document.querySelector('.heart').addEventListener('click', function() {
+            // munculin surat
+            document.getElementById('letter').style.display = 'block';
+            // hilangin instruksi
+            document.querySelector('.instruction').style.display = 'none';
+            // play musik
+            document.getElementById('bgm').play();
+        });
+    </script>
 </body>
 </html>
