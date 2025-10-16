@@ -1,62 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="./Valentine Confession_files/css2" rel="stylesheet">
-    <link rel="stylesheet" href="./Valentine Confession_files/valentine-confession.css">
-    <title>tebak isi</title>
-    <style>
-        .message {
-            display: none; /* awalnya sembunyi */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tebak isi</title>
+
+  <link rel="stylesheet" href="./Valentine Confession_files/valentine-confession.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      transition: background-color 2s ease;
+    }
+
+    .instruction {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .message {
+      opacity: 0;
+      transform: translateY(-50px);
+      transition: all 1.3s ease;
+      display: none;
+    }
+
+    .message.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-    <p class="instruction">Click the heart!</p>
-    <div class="container" style="background-color: rgb(244, 143, 177);">
-        <label>
-            <div class="heart beating">
-                <img src="./Valentine Confession_files/Love_Heart_SVG.svg">
-            </div>
-            <input id="messageState" type="checkbox" style="display:none">
-        </label>
-        <div class="message no-anim" id="letter">
-            <h1 style="font-family: Cinzel, serif; font-size: 40px; letter-spacing: 1.2px;">Dear AwO❤,</h1>
-            <p> 
-                <span>
-                      AWOOOO SAYANGGGGG❤❤❤, akuuu disiniii mau ngucapin trimakasiiii banyakkk yyaaaaaa, kamuuu bener bener berarti bangettt buat akuu...
-                </span>
-                <br><br>
-                <span>
-                    Sayangggg aku minta maafff yaaaa, akuuu masii banyak kurangnyaaa...
-                </span>
-            </p>
-            <br>
-            <div class="sincere">
-                <p style="font-weight: bold;"> Sincerely</p>
-                <p>Aufar</p>
-            </div>
-        </div>
+  <p class="instruction">Click the heart!</p>
+
+  <div class="container">
+    <label>
+      <div class="heart beating">
+        <img src="./Valentine Confession_files/Love_Heart_SVG.svg" />
+      </div>
+      <input id="messageState" type="checkbox" style="display: none" />
+    </label>
+
+    <div class="message no-anim" id="letter">
+      <h1 style="font-family: Cinzel, serif; font-size: 40px; letter-spacing: 1.2px;">
+        Dear AwO❤,
+      </h1>
+      <p>
+        <span>
+            AWOOOO SAYANGGGGG❤❤❤, akuuu disiniii mau ngucapin trimakasiiii
+          banyakkk yyaaaaaa, kamuuu bener bener berarti bangettt buat akuu, ...
+        </span>
+        <br /><br />
+        <span>
+          Sayangggg aku minta maafff yaaaa, akuuu masii banyak
+          kurangnyaaa...
+        </span>
+      </p>
+      <br />
+      <div class="sincere">
+        <p style="font-weight: bold">Sincerely</p>
+        <p>Aufar</p>
+      </div>
     </div>
+  </div>
 
-    <!-- Lagu tanpa autoplay -->
-    <audio id="bgm" src="Karolina.mp3" loop hidden></audio>
+  <audio id="bgm" src="Karolina.mp3" loop hidden></audio>
 
-    <script src="./Valentine Confession_files/jquery.js.download"></script>
-    <script src="./Valentine Confession_files/jquery2.1.js.download"></script>
-    <script defer src="./Valentine Confession_files/valentine-confession.js.download"></script>
-    <script>
-        document.querySelector('.heart').addEventListener('click', function() {
-            // munculin surat
-            document.getElementById('letter').style.display = 'block';
-            // hilangin instruksi
-            document.querySelector('.instruction').style.display = 'none';
-            // play musik
-            document.getElementById('bgm').play();
-        });
-    </script>
+  <script>
+    document.querySelector(".heart").addEventListener("click", function () {
+      // Transisi warna background
+      document.body.style.backgroundColor = "rgb(244, 143, 177)";
+
+      // Munculkan surat turun perlahan
+      const letter = document.getElementById("letter");
+      letter.classList.add("show");
+
+      // Hilangin instruksi
+      const instruksi = document.querySelector(".instruction");
+      if (instruksi) instruksi.style.display = "none";
+
+      // Play musik
+      document.getElementById("bgm").play();
+    });
+  </script>
 </body>
 </html>
