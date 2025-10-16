@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tebak isi</title>
 
-  <!-- CSS eksternal -->
   <link rel="stylesheet" href="./Valentine Confession_files/valentine-confession.css" />
 
   <style>
@@ -30,19 +29,23 @@
       height: 100vh;
     }
 
-    /* Surat disembunyikan dulu */
     .message {
       opacity: 0;
       transform: translateY(-50px);
-      transition: all 1.2s ease;
+      transition: opacity 1.2s ease, transform 1.2s ease;
       pointer-events: none;
     }
 
-    /* Surat saat dibuka */
     .message.show {
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
+    }
+
+    /* Supaya klik kena pasti */
+    .heart {
+      cursor: pointer;
+      z-index: 10;
     }
   </style>
 </head>
@@ -50,12 +53,9 @@
   <p class="instruction">Click the heart!</p>
 
   <div class="container">
-    <label>
-      <div class="heart beating">
-        <img src="./Valentine Confession_files/Love_Heart_SVG.svg" />
-      </div>
-      <input id="messageState" type="checkbox" style="display: none" />
-    </label>
+    <div id="heart-btn" class="heart beating">
+      <img src="./Valentine Confession_files/Love_Heart_SVG.svg" />
+    </div>
 
     <div class="message no-anim" id="letter">
       <h1 style="font-family: Cinzel, serif; font-size: 40px; letter-spacing: 1.2px;">
@@ -82,7 +82,7 @@
   <audio id="bgm" src="Karolina.mp3" loop hidden></audio>
 
   <script>
-    const heart = document.querySelector('.heart');
+    const heart = document.getElementById('heart-btn');
     const letter = document.getElementById('letter');
     const audio = document.getElementById('bgm');
     const instruction = document.querySelector('.instruction');
@@ -91,22 +91,7 @@
 
     heart.addEventListener('click', function () {
       if (!isOpen) {
-        // BUKA
         letter.classList.add('show');
         document.body.style.backgroundColor = 'rgb(244, 143, 177)';
         instruction.style.display = 'none';
         audio.currentTime = 0;
-        audio.play();
-      } else {
-        // TUTUP
-        letter.classList.remove('show');
-        document.body.style.backgroundColor = 'white';
-        audio.pause();
-        audio.currentTime = 0;
-        instruction.style.display = 'block';
-      }
-      isOpen = !isOpen;
-    });
-  </script>
-</body>
-</html>
