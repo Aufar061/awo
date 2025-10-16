@@ -54,4 +54,59 @@
       <div class="heart beating">
         <img src="./Valentine Confession_files/Love_Heart_SVG.svg" />
       </div>
-      <input
+      <input id="messageState" type="checkbox" style="display: none" />
+    </label>
+
+    <div class="message no-anim" id="letter">
+      <h1 style="font-family: Cinzel, serif; font-size: 40px; letter-spacing: 1.2px;">
+        Dear AwO❤,
+      </h1>
+      <p>
+        <span>
+            AWOOOO SAYANGGGGG❤❤❤, akuuu disiniii mau ngucapin trimakasiiii
+          banyakkk yyaaaaaa, kamuuu bener bener berarti bangettt buat akuu...
+        </span>
+        <br /><br />
+        <span>
+          Sayangggg aku minta maafff yaaaa, akuuu masii banyak kurangnyaaa...
+        </span>
+      </p>
+      <br />
+      <div class="sincere">
+        <p style="font-weight: bold">Sincerely</p>
+        <p>Aufar</p>
+      </div>
+    </div>
+  </div>
+
+  <audio id="bgm" src="Karolina.mp3" loop hidden></audio>
+
+  <script>
+    const heart = document.querySelector('.heart');
+    const letter = document.getElementById('letter');
+    const audio = document.getElementById('bgm');
+    const instruction = document.querySelector('.instruction');
+
+    let isOpen = false;
+
+    heart.addEventListener('click', function () {
+      if (!isOpen) {
+        // BUKA
+        letter.classList.add('show');
+        document.body.style.backgroundColor = 'rgb(244, 143, 177)';
+        instruction.style.display = 'none';
+        audio.currentTime = 0;
+        audio.play();
+      } else {
+        // TUTUP
+        letter.classList.remove('show');
+        document.body.style.backgroundColor = 'white';
+        audio.pause();
+        audio.currentTime = 0;
+        instruction.style.display = 'block';
+      }
+      isOpen = !isOpen;
+    });
+  </script>
+</body>
+</html>
